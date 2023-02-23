@@ -1,0 +1,14 @@
+package com.cogent.repository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.cogent.model.UserDao;
+public interface UserRepository extends CrudRepository<UserDao, Integer> {
+	
+    UserDao findByUsername(String username);
+    
+    @Query(value = "select * from user where role=\"user\";",nativeQuery = true)
+    List<UserDao> findAllByRole(String role);
+}

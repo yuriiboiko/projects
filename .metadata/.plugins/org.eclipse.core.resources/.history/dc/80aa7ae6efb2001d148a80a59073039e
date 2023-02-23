@@ -1,0 +1,80 @@
+package com.cogent.service;
+
+import com.cogent.model.UserDao;
+import com.cogent.model.UserDto;
+import com.cogent.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class JwtUserDetailsService implements UserDetailsService {
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDao user = userRepository.findByUsername(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
+		}
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				new ArrayList<>());
+	}
+
+	public UserDao save(UserDto user) {
+		UserDao newUser = new UserDao();
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setName(user.getName());
+		newUser.setRole(user.getRole());
+		newUser.setEmail(user.getEmail());
+		return userRepository.save(newUser);
+	}
+
+	public List<UserDao> getAllUsers() {
+		
+		return userRepository.findAllByRole("user");
+	}
+	
+	public List<UserDao> getAll() {
+		
+		return (List<UserDao>) userRepository.findAll();
+	}
+	
+	public UserDao update(UserDto user) {
+		UserDao newUser = new UserDao();
+		newUser=getUserUsername(user.getUsername());
+		if(newUser.isEmpty()) {
+			System.out.println("Update Failed User not found");
+			return null;
+		}
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setName(user.getName());
+		newUser.setRole(user.getRole());
+		newUser.setEmail(user.getEmail());
+		return userRepository.update(newUser);
+		
+	}
+	
+	public UserDao getUserUsername(String name) {
+		
+		return userRepository.findByUsername(name);
+
+	}
+	
+	
+	
+}

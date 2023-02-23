@@ -1,0 +1,46 @@
+package com.cogent.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cogent.model.UserDao;
+import com.cogent.service.JwtUserDetailsService;
+
+
+
+@RestController
+@CrossOrigin()
+@RequestMapping("/user")
+public class UserController {
+	
+	@Autowired
+	private JwtUserDetailsService userDetailsService;
+
+    @GetMapping("/greeting")
+    public String getEmployees() {
+        return "Welcome!";
+    }
+    
+    @GetMapping("/getAllUsers")
+    public List<UserDao> getAllUsers() {
+    	return userDetailsService.getAllUsers();
+    }
+    
+    @GetMapping("/getAllAdimns")
+    public List<UserDao> getAllAdimns() {
+    	return userDetailsService.getAllAdmins();
+    }
+    
+    @GetMapping("/getAll")
+    public List<UserDao> getAll() {
+    	return userDetailsService.getAll();
+    }
+    
+    
+    
+    
+}
