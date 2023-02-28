@@ -8,3 +8,7 @@
 1677088284692	Encapsulate field 'name'
 1677088986493	Rename type 'EmployeeController'
 1677132800696	Rename type 'SpringBootJwtApplication'
+1677221615733	Delete element
+1677248674508	Encapsulate field 'qcreated_by'
+1677248680394	Encapsulate field 'qapproved_by'
+1677251669379	Delete element

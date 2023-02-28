@@ -1,5 +1,6 @@
 package com.cogent.service;
 
+import com.cogent.model.BooleanDao;
 import com.cogent.model.UserDao;
 import com.cogent.model.UserDto;
 import com.cogent.repository.UserRepository;
@@ -33,6 +34,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 	}
 
 	public UserDao save(UserDto user) {
+		
+		boolean userExists = userRepository.existsByUsername(user.getUsername());
+		
+		if(userExists) {
+			return new UserDao();
+		}
+	
 		UserDao newUser = new UserDao();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
@@ -56,28 +64,19 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public List<UserDao> getAll() {
 		return (List<UserDao>) userRepository.findAll();
 	}
-	
-	/*
-	public UserDao update(UserDto user) {
-		UserDao newUser = new UserDao();
-		newUser=getUserUsername(user.getUsername());
-		if(newUser.isEmpty()) {
-			System.out.println("Update Failed User not found");
-			return null;
-		}
-		newUser.setUsername(user.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setName(user.getName());
-		newUser.setRole(user.getRole());
-		newUser.setEmail(user.getEmail());
-		return userRepository.update(newUser);
+	public List<UserDao>getAllExceptMe(String username){
+		return userRepository.getAllExceptMe(username);
 		
-	}*/
-	
-	public UserDao getUserByUsername(String name) {
 		
-		return userRepository.findByUsername(name);
-
+	}
+	
+	public String find(String username) {
+		return userRepository.findbyUsername(username);
+	}
+	
+	
+	public UserDao getUserByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	public UserDao getUserById(int id) {
@@ -91,6 +90,17 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public List<UserDao> getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+
+	public BooleanDao usernameExists(String username) {
+		UserDao userExists=getUserByUsername(username);
+		if(userExists==null) {
+			return new BooleanDao(false);
+		}
+		return new BooleanDao(true);
+	}
+	
+	
+	
 	
 	
 	

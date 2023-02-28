@@ -2,12 +2,14 @@ package com.cogent.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cogent.model.UserDao;
+import com.cogent.model.UserDto;
 import com.cogent.service.JwtUserDetailsService;
 
 
@@ -56,8 +58,35 @@ public class UserController {
     
     @GetMapping("/getUserByUsername/{username}")
     public UserDao getUserByUsername(@PathVariable("username") String username) {
-    	return userDetailsService.getUserByUsername(username);
+    	System.out.println("Getting user by id: "+username);
+    	UserDao user= userDetailsService.getUserByUsername(username);
+    	String email= userDetailsService.find(username);
+    	System.out.println("email is :"+email);
+    	System.out.println("email in object is "+user.getEmail());
+    	user.setEmail(email);
+    	System.out.println("email in object after manual reset is "+user.getEmail());
+
+    	return user;
     }
+    
+    
+    @GetMapping("/getUserByUsernames/{username}")
+    public String getUserByUsernames(@PathVariable("username") String username) {
+    	System.out.println("Getting user by id: "+username);
+    	return userDetailsService.find(username);
+    }
+    
+    
+    
+    
+
+    @GetMapping("/getAllBesidesMe/{username}")
+    public List<UserDao> getAllBesidesMe(@PathVariable("username") String username) {
+    	System.out.println("Getting user by id: "+username);
+    	return userDetailsService.getAllExceptMe(username);
+    }
+    
+    
     
     
     

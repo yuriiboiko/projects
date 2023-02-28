@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.cogent.model.UserDao;
+import com.cogent.model.UserDto;
 public interface UserRepository extends JpaRepository<UserDao, Integer> {
 
 	UserDao findByUsername(String username);
@@ -15,10 +16,17 @@ public interface UserRepository extends JpaRepository<UserDao, Integer> {
 
 	List<UserDao> findByName(String name);
 
-
-	//@Query(value = "select * from user where role=\"user\";",nativeQuery = true)
+	boolean existsByUsername(String username);
+	
+	@Query(value = "select email from user where username=?1",nativeQuery = true)
+	String findbyUsername(String username);
+	
+	
 	@Query(value = "select * from user where role=?1",nativeQuery = true)
 	List<UserDao> findAllByRole(String role);
+
+	@Query(value = "select * from user where username!=?1",nativeQuery = true)
+	List<UserDao> getAllExceptMe(String username);
 
 	//UserDao update(UserDao u);
 }

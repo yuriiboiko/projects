@@ -1,8 +1,10 @@
 package com.cogent.controller;
 
 import com.cogent.config.JwtTokenUtil;
+import com.cogent.model.BooleanDao;
 import com.cogent.model.JwtRequest;
 import com.cogent.model.JwtResponse;
+import com.cogent.model.UserDao;
 import com.cogent.model.UserDto;
 import com.cogent.service.JwtUserDetailsService;
 
@@ -30,10 +32,11 @@ public class JwtAuthenticationController {
 
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+		
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -42,11 +45,23 @@ public class JwtAuthenticationController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+		UserDao userReturn=userDetailsService.save(user);
+		if(userReturn==null) {
+			System.out.println("User already exists");
+			return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok(userReturn);
 	}
 
+	@PostMapping("/usernameExists/{name}")
+	public ResponseEntity<BooleanDao> usernameExists(@PathVariable("name") String name) throws Exception {
+		return ResponseEntity.ok(userDetailsService.usernameExists(name));
+	}
+	
+	
 	
 	private void authenticate(String username, String password) throws Exception {
+
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {

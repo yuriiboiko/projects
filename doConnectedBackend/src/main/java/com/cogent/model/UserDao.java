@@ -12,14 +12,15 @@ public class UserDao {
     @Column
     private String username;
     @Column
-    @JsonIgnore
-    private String password;
-    @Column
     private String email;
     @Column
     private String role;
     @Column
     private String name;
+    @Column
+    @JsonIgnore
+    private String password;
+
     
 
     public String getUsername() {
