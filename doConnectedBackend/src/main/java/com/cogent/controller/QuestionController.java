@@ -20,7 +20,8 @@ import com.cogent.model.QuestionDto;
 import com.cogent.service.QuestionService;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin
+//@CrossOrigin(origins ="http://localhost:4200")
 @RequestMapping("/question")
 public class QuestionController {
 	

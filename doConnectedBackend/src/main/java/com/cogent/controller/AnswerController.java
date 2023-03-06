@@ -18,7 +18,8 @@ import com.cogent.model.Answer;
 import com.cogent.service.AnswerService;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
+//@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/answer")
 public class AnswerController {
 	

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cogent</groupId>
-	<artifactId>spring-boot-jwt</artifactId>
+	<artifactId>doConnect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-jwt</name>
+	<name>doConnect</name>
 	<description>doConnect app Backend</description>
 
 	<properties>

@@ -19,7 +19,8 @@ import com.cogent.model.ChatDto;
 import com.cogent.service.ChatService;
 
 @RestController
-@CrossOrigin(origins ="http://localhost:4200")
+//@CrossOrigin(origins ="http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/chat")
 public class ChatController {
 
