@@ -1,0 +1,42 @@
+<div class="question-container">
+    <div class="question-header">
+      <h1 class="question-title">{{ question.title }}</h1>
+      <p class="question-details">Asked by {{ question.qcreated_by }} on {{ question.datetime }}</p>
+    </div>
+    <div class="question-body">
+      <div class="question-description">{{ question.description_question }}</div>
+      <div class="question-image" *ngIf="question.image_src!== 'null'">
+        <img [src]="question.image_src" alt="Question Image">
+      </div>
+    </div>
+    <div>
+      <app-answerform *ngIf="displayForm" (answerSubmitted)="onAnswerSubmitted($event)"></app-answerform>
+    </div>
+
+    <div class="question-footer">
+        <div class="question-tags">{{ question.topic }}</div>
+        <div class="question-approved-by">Approved by {{ question.qapproved_by }}</div>
+        <div>
+          <button class="answer-button" (click)="answerQuestion(this.question.id)" >Answer</button>
+          <button *ngIf="displayForm" class="answer-button" (click)="cancelAnswerForm()" >Cancel</button>
+        </div>
+
+        </div>
+  </div>
+
+  <div class="answer-list" *ngIf="answers.length > 0">
+    <h2>Answers</h2>
+    <div class="answer" *ngFor="let answer of answers">
+      <div class="answer-header">
+        <p class="answer-details">Answered by {{ answer.created_by }}  </p>
+        <p class="answer-approved-by">Approved by {{ answer.approved_by }}</p>
+      </div>
+      <div class="answer-body">
+        <div class="answer-description">{{ answer.description_answer }}</div>
+        <div class="answer-image" *ngIf="answer.img_src">
+          <img [src]="answer.img_src" alt="Answer Image">
+        </div>
+      </div>
+    </div>
+  </div>
+

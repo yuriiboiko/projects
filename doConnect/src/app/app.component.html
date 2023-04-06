@@ -1,0 +1,28 @@
+<body>
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <img class="logo" src="../../assets/doConnect logo.png" alt="DoConnect Logo">
+          <h1>DoConnect</h1>
+        </div>
+        <div *ngIf="checkLoginStatus()">
+          <h4>Welcome</h4>
+        </div>
+        <nav>
+          <ul>
+            <li><a  routerLink= "" routerLinkActive="active"> Home</a></li>
+            <li *ngIf="!checkLoginStatus()"><a routerLink= "login" routerLinkActive="active">Login</a></li>
+            <li *ngIf="!checkLoginStatus()"><a  routerLink= "register" routerLinkActive="active"> Register</a></li>
+            <li *ngIf="checkLoginStatus()"><a (click)="logMeOut()" routerLink= "" routerLinkActive="active">Logout</a></li>
+            <li *ngIf="checkLoginStatus()"><a  routerLink= "searchQuestion" routerLinkActive="active"> Search Question</a></li>
+            <li *ngIf="checkLoginStatus()"><a  routerLink= "askQuestion" routerLinkActive="active"> Ask a question</a></li>
+            <li *ngIf="checkLoginStatus()" ><a  routerLink= "chat" routerLinkActive="active"> Chat</a></li>
+            <li *ngIf="checkLoginStatus() && checkAdmin()" ><a  routerLink= "approveQuestion" routerLinkActive="active"> Manage Questions</a></li>
+            <li *ngIf="checkLoginStatus() && checkAdmin()" ><a  routerLink= "approveAnswer" routerLinkActive="active"> Manage Answers</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <router-outlet></router-outlet>  
+  </body>
+

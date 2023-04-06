@@ -1,0 +1,14 @@
+<body>
+	<div class="container">
+		<ul class="user-list">
+			<li class="user-list-item" *ngFor="let user of users">
+				<div class="avatar">{{user.name.charAt(0)}}</div>
+				<div>
+					<p class="name">{{user.name}}</p>
+					<p class="username">username: {{user.username}}</p>
+				</div>
+				<button class="chat-btn" (click)="displayMessages(user)">Chat</button>
+			</li>
+		</ul>
+	</div>
+</body>

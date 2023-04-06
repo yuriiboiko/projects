@@ -1,0 +1,15 @@
+<form class="answer-form">
+  <div class="form-group">
+    <label>Description: *</label>
+    <textarea class="form-control" name="description_answer" [(ngModel)]="answer.description_answer" [maxlength]="maxAnswerLength" required ></textarea>
+  </div>
+  <div class="form-group">
+    <label>Image Upload:</label>
+    <div class="input-group">
+      <input type="file" class="form-control-file" name="img_src" disabled>
+      <div class="input-group-append"  >
+        <button type="submit" class="btn btn-primary" (click)="sumbitForm()">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,31 @@
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>Approved By</th>
+        <th>Created By</th>
+        <th>Date</th>
+        <th>Question Title</th>
+        <th colspan="2">Approve</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let answer of answers" class="table-body">
+        <td>{{answer.id}}</td>
+        <td>{{answer.description_answer}}</td>
+        <td><img src="{{answer.img_src}}" alt=""></td>
+        <td>{{answer.status}}</td>
+        <td>{{answer.approved_by}}</td>
+        <td>{{answer.created_by}}</td>
+        <td>{{answer.datetime}}</td>
+        <td>{{answer.question.title}}</td>
+        <div>
+          <td><button (click)="approveAnswer(answer)"  [ngStyle]="{'background-color': answer.status === 'false' ? '#ff0000' : '#008080'}">Approve</button></td>
+          <td><button (click)="deleteAnswer(answer.id)">Delete</button></td>
+        </div>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,120 @@
+
+.conversation-container {
+  width: 100%;
+  min-height: 800px; /* set the minimum height value as needed */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.conversation-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.conversation-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.conversation-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: scroll;
+
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-right {
+  align-self: flex-end;
+  background-color: #f1f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+.message-left {
+  align-self: flex-start;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 70%;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.conversation-footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-top: 1px solid #eee;
+}
+
+.message-form {
+  display: flex;
+  flex: 1;
+}
+
+input[type="text"] {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #f1f0f0;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  margin-right: 10px;
+}
+
+.send-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.message-form input {
+  width: 97%; /* adjust the percentage value as needed */
+}
+
+.fa-paper-plane {
+  font-size: 18px;
+}

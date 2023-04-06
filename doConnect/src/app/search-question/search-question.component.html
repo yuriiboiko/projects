@@ -1,0 +1,44 @@
+<div class="search-question">
+  <div class="row">
+    <div class="col-md-4 form-group">
+      <label for="topic">Select a topic:</label>
+      <select class="form-control" id="topic" [(ngModel)]="selectedTopic"(change)="onTopicSelected()">
+        <option value="">Choose a topic</option>
+        <option *ngFor="let topic of topicList">{{ topic }}</option>
+      </select>
+    </div>
+    <div class="col-md-6 form-group">
+      <label for="search">Search for a question:</label>
+      <input type="text" class="form-control" id="search" [(ngModel)]="searchText">
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary btn-block" (click)="searchQuestions()">Search</button>
+      <button type="button" class="btn btn-secondary btn-block" (click)="clearResults()"  *ngIf="selectedTopic !== '' || searchFilter ">Clear</button>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedTopic !== '' || searchFilter ">
+    <h3>Questions about {{ selectedTopic }}</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngIf="questions.length === 0">No questions found.</li>
+      <li class="list-group-item" *ngFor="let question of questions">
+        <div class="row">
+          <div class="col-9">
+            <h4>{{ question.title }}</h4>
+            <p>{{ question.description_question }}</p>
+            <p><small>Created by {{ question.qcreated_by }} on {{ question.datetime | date }}</small></p>
+            <button class="btn btn-primary" (click)="answerQuestion(question)">View</button>
+
+          </div>
+          <div class="col-3">
+            <img *ngIf="question.image_src !== 'null'" class="img-fluid" [src]="question.image_src" alt="Question Image">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

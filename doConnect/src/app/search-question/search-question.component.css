@@ -1,0 +1,62 @@
+.search-question {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  margin-top: .5rem;
+}
+
+.list-group-item {
+  border: none;
+  padding: 1rem 0;
+}
+
+.list-group-item h4 {
+  margin-bottom: 0.5rem;
+}
+
+.list-group-item p {
+  margin-bottom: 0.25rem;
+}
+
+.list-group-item small {
+  color: #6c757d;
+}
+
+.list-group-item img {
+  max-height: 150px;
+  object-fit: cover;
+}
+
+/* new styles */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-4 {
+  width: 33.33%;
+  padding: 0 15px;
+}
+
+.col-8 {
+  width: 66.66%;
+  padding: 0 15px;
+}
+
+.col-md-2 {
+  display: flex;
+  align-items: center; /* vertically center the buttons */
+}
+
+.col-md-2 button {
+  flex-grow: 1; /* distribute remaining space evenly */
+  margin-right: 10px; /* add some spacing between the buttons */
+}
+
+

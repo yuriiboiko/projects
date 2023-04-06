@@ -1,0 +1,24 @@
+<div class="conversation-container">
+  <div class="conversation-header">
+    <h2>To {{ otherUser }}:</h2>
+  </div>
+
+  <div class="conversation-body">
+    <div class="message-list">
+      <div *ngFor="let message of sortedMessages" class="message-item">
+        <div [ngClass]="{'message-right': message.from_user === currentUser, 'message-left': message.from_user !== currentUser}">
+          <div class="message-text">{{ message.message }}</div>
+          <div class="message-timestamp">{{ message.datetime | date: 'medium' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conversation-footer">
+    <form (submit)="sendMessage()" class="message-form">
+      <input [(ngModel)]="messageText" name="message" placeholder="Type a message..." [maxlength]="maxChatLength">
+      <button type="submit" class="send-button">Send<i class="fa fa-paper-plane"></i></button>
+    </form>
+  </div>
+</div>
+
