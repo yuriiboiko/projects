@@ -1,0 +1,10 @@
+A
+N
+N
+B
+$
+A
+A
+Total number of internal nodes is 4
+Total number of leaf nodes is 7
+Total number of nodes is 11

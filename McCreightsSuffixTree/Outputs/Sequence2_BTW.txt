@@ -1,0 +1,15 @@
+I
+P
+S
+S
+M
+$
+P
+I
+S
+S
+I
+I
+Total number of internal nodes is 7
+Total number of leaf nodes is 12
+Total number of nodes is 19
